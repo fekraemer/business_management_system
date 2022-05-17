@@ -1,6 +1,6 @@
 package com.fernanda.business_management_system.enums;
 
-public enum Province {
+public enum State {
     AC,
     AL,
     AP,

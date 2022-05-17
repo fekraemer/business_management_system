@@ -2,15 +2,16 @@ package com.fernanda.business_management_system.model;
 
 import com.fernanda.business_management_system.enums.PersonType;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity(name = "tbl_individual")
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
-public class Individual extends Person {
+@DiscriminatorColumn(name = "origin", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("individual")
+public class Individual extends Person{
 
+    @Column(unique = true)
     private String cpf;
     private String name;
     private String surname;

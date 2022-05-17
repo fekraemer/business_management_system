@@ -1,5 +1,7 @@
 package com.fernanda.business_management_system.model;
 
+import com.fernanda.business_management_system.enums.State;
+
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,21 +14,19 @@ public class Address {
     private String address2;
     private String city;
     //@Enumerated(EnumType.STRING)
-    private String state;
+    private State state;
     private String postalCode;
-    private String country;
 
     public Address() {
     }
 
-    public Address(String street, int number, String address2, String city, String state, String postalCode, String country) {
+    public Address(String street, int number, String address2, String city, State state, String postalCode) {
         this.street = street;
         this.number = number;
         this.address2 = address2;
         this.city = city;
         this.state = state;
         this.postalCode = postalCode;
-        this.country = country;
     }
 
     public String getStreet() {
@@ -61,11 +61,11 @@ public class Address {
         this.city = city;
     }
 
-    public String getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(State state) {
         this.state = state;
     }
 
@@ -75,13 +75,5 @@ public class Address {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 }

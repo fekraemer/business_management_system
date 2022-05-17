@@ -1,9 +1,6 @@
 package com.fernanda.business_management_system.model.request;
 
-import com.fernanda.business_management_system.enums.Contract;
-import com.fernanda.business_management_system.enums.Department;
-import com.fernanda.business_management_system.enums.PersonType;
-import com.fernanda.business_management_system.enums.Position;
+import com.fernanda.business_management_system.enums.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -21,7 +18,7 @@ public class EmployeeRequest extends IndividualRequest {
     private Boolean mealAllowance;
     private Boolean transportAllowance;
 
-    public EmployeeRequest(String cpf, String name, String surname, String email, String phone, String cellphone, String street, int number, String address2, String city, String state, String postalCode, Double salary, Contract contract, Double commission, Department department, Position position, Boolean healthInsurance, Boolean mealAllowance, Boolean transportAllowance) {
+    public EmployeeRequest(String cpf, String name, String surname, String email, String phone, String cellphone, String street, int number, String address2, String city, State state, String postalCode, Double salary, Contract contract, Double commission, Department department, Position position, Boolean healthInsurance, Boolean mealAllowance, Boolean transportAllowance) {
         super(cpf, name, surname, email, phone, cellphone, street, number, address2, city, state, postalCode);
         this.salary = salary;
         this.contract = contract;

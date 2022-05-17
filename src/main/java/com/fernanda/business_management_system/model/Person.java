@@ -2,7 +2,6 @@ package com.fernanda.business_management_system.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fernanda.business_management_system.enums.PersonType;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,16 +12,17 @@ public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String email;
     private String phone;
+    @Column(unique = true)
     private String cellphone;
-    @Value("#{T(java.time.LocalDate).parse('${property.name}')}")
-    @JsonFormat(pattern="dd-MM-yyyy")
-    private LocalDate registrationDate;
-    @Embedded
-    private Address address;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate registrationDate = LocalDate.now();
     @Enumerated(EnumType.STRING)
     private PersonType personType = PersonType.CLIENT_SUPPLIER;
+    @Embedded
+    private Address address;
 
     public Person() {
     }

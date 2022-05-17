@@ -6,12 +6,14 @@ import com.fernanda.business_management_system.enums.PersonType;
 import com.fernanda.business_management_system.enums.Position;
 import org.hibernate.validator.internal.util.Contracts;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.time.LocalDate;
 
 @Entity(name = "tbl_employee")
+@DiscriminatorValue("employee")
 public class Employee extends Individual {
 
     private Double salary;

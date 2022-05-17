@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -23,7 +24,7 @@ public class IndividualService {
 
     public Individual findById(Long id) {
         return individualRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Individual not found."));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Individual {%s} not found.", id)));
     }
 
     public Individual create(IndividualRequest request){
@@ -34,7 +35,6 @@ public class IndividualService {
         individual.setEmail(request.getEmail());
         individual.setPhone(request.getPhone());
         individual.setCellphone(request.getCellphone());
-        //individual.setRegistrationDate(request.getRegistrationDate());
         individual.setCpf(request.getCpf());
         individual.setPersonType(request.getPersonType());
 
@@ -45,50 +45,35 @@ public class IndividualService {
         address.setCity(request.getCity());
         address.setState(request.getState());
         address.setPostalCode(request.getPostalCode());
-        //address.setCountry(request.getCountry()); RETIRAR
 
         individual.setAddress(address);
         return individualRepository.saveAndFlush(individual);
 
     }
 
-    public Individual update(Long id, IndividualRequest request) {
-
-        var individual = findById(id);
-        individual.setName(request.getName());
-        individual.setSurname(request.getSurname());
-        individual.setEmail(request.getEmail());
-        individual.setPhone(request.getPhone());
-        individual.setCellphone(request.getCellphone());
-        //individual.setRegistrationDate(request.getRegistrationDate());
-        individual.setCpf(request.getCpf());
-        individual.setPersonType(request.getPersonType());
-
-        //Address address = findById(id);
-//      address.setPostCode(request.getPostCode());
-//      address.setCity(request.getCity());
-//      address.setState(request.getState());
-//      address.setStreet(request.getStreet());
-//      address.setNumber(request.getNumber());
-//      address.setDetails(request.getDetails());
-        return individualRepository.saveAndFlush(individual);
-    }
-
-    public Individual replace (Long id, IndividualRequest request) {
-
-        var individual = findById(id);
-        individual.setName(request.getName());
-        individual.setSurname(request.getSurname());
-        individual.setEmail(request.getEmail());
-        individual.setPhone(request.getPhone());
-        individual.setCellphone(request.getCellphone());
-        //individual.setRegistrationDate(request.getRegistrationDate());
-        individual.setCpf(request.getCpf());
-        return individualRepository.saveAndFlush(individual);
-    }
-
-    public void delete(Long id) {
-        individualRepository.deleteById(id);
-    }
+//    public Individual update(Long id, IndividualRequest request) {
+//
+//        var individual = findById(id);
+//        individual.setName(request.getName());
+//        individual.setSurname(request.getSurname());
+//        individual.setEmail(request.getEmail());
+//        individual.setPhone(request.getPhone());
+//        individual.setCellphone(request.getCellphone());
+//        individual.setCpf(request.getCpf());
+//        individual.setPersonType(request.getPersonType());
+//
+//        //Address address = findById(id);
+////      address.setPostCode(request.getPostCode());
+////      address.setCity(request.getCity());
+////      address.setState(request.getState());
+////      address.setStreet(request.getStreet());
+////      address.setNumber(request.getNumber());
+////      address.setDetails(request.getDetails());
+//        return individualRepository.saveAndFlush(individual);
+//    }
+//
+//    public void delete(Long id) {
+//        individualRepository.deleteById(id);
+//    }
 
 }
