@@ -3,6 +3,7 @@ package com.fernanda.business_management_system.model.request;
 import com.fernanda.business_management_system.enums.PersonType;
 import com.fernanda.business_management_system.enums.State;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -21,10 +22,13 @@ public class IndividualRequest {
     @Size(min = 3, max = 40)
     private String surname;
 
+    @Email(message = "Please provide a valid email address")
+    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Email must be valid")
     private String email;
+
     private String phone;
 
-    @Pattern(regexp="(^((\\(\\d{2}\\))|\\d{2})[- .]?\\d{9}$)", message = "Cellphone number must have 11 digits (DDD + phone number).")
+    @Pattern(regexp="(^((\\(\\d{2}\\))|\\d{2})[- .]?\\d{9}$)", message = "Cellphone number must have 11 digits (DDD + phone number without space or hyphen).")
     private String cellphone;
 
     @NotNull (message = "Person type is mandatory")
